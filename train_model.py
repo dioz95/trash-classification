@@ -96,10 +96,6 @@ def compile_train_model(train_generator, validation_generator, model):
             WandbMetricsLogger()
         ]
     )
-
-    # Save model to local path
-    model_name = 'trash-classification-automated.keras'
-    model.save(model_name)
     
 
     # Save model to W&B
@@ -108,8 +104,7 @@ def compile_train_model(train_generator, validation_generator, model):
 
     run.link_model(path=path, registered_model_name=registered_model_name)
 
-    print(f"The model has been trained and saved locally with name '{model_name}'")
-    print(f"and in W&B with name '{path}'")
+    print(f"The model has been trained and saved in W&B '{path}'")
 
     wandb.finish()
 
