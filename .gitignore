@@ -155,6 +155,7 @@ cython_debug/
 # Wandb
 artifacts/
 wandb/
+models/
 .keras
 
 # PyCharm

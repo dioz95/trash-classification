@@ -9,7 +9,7 @@ import os
 
 run = wandb.init(
     project="wandb-trash-classification",
-    # hyperparameters are set for the sake of speed and simplicity
+    # hyperparameters are set for the sake of training speed and simplicity
     config={
         "learning_rate": 0.1,
         "loss": "categorical_crossentropy",
@@ -20,7 +20,6 @@ run = wandb.init(
 )
 
 config = wandb.config
-entity = "adamata-selection"
 
 def generate_data(images_dir):
     # Without data augmentation
@@ -96,10 +95,13 @@ def compile_train_model(train_generator, validation_generator, model):
             WandbMetricsLogger()
         ]
     )
-    
+
+    # Save model locally
+    path = "./models/trash-classification-automated.keras"
+    model.save(path)
 
     # Save model to W&B
-    path = "./trash-classification-automated.keras"
+    path = "./models/trash-classification-automated.keras"
     registered_model_name = "trash-classification-dev"
 
     run.link_model(path=path, registered_model_name=registered_model_name)
