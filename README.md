@@ -16,15 +16,19 @@ To replicate the experimentation process you will need to:
 ```bash
 git clone <github-repository-url>
 ```
-3. Create environment using `python3.11.x`. In this case I use conda,
+2. Create environment using `python3.11.x`. In this case I use conda,
 ```bash
 conda create -n "<env-name>" python=3.11
 ```
-5. Install required dependencies,
+3. Install required dependencies,
 ```bash
 pip install -r requirements.txt
 ```
-7. Run `train_mode.py`,
+4. Create `models` directory in the project root directory,
+```bash
+mkdir -p `./models/`
+```
+5. Run `train_mode.py`,
 ```bash
 python train_model.py
 ```
