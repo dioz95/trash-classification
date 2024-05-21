@@ -31,7 +31,7 @@ def generate_data(images_dir):
     
     train_generator = datagen.flow_from_directory(
         images_dir,
-        target_size=(128, 128),
+        target_size=(28, 28),
         batch_size=config.batch_size,
         class_mode='categorical',
         subset='training'
@@ -39,7 +39,7 @@ def generate_data(images_dir):
     
     validation_generator = datagen.flow_from_directory(
         images_dir,
-        target_size=(128, 128),
+        target_size=(28, 28),
         batch_size=config.batch_size,
         class_mode='categorical',
         subset='validation'
@@ -50,7 +50,7 @@ def generate_data(images_dir):
 def build_cnn(train_generator):
     n_class = len(train_generator.class_indices)
 
-    i = Input(shape=(128, 128, 3))
+    i = Input(shape=(28, 28, 3))
 
     # Convolutional Layers {Conv --> BatchNorm --> Conv --> BatchNorm --> MaxPooling (3x)}
     x = Conv2D(32, (3,3), padding='same', activation='relu')(i)
