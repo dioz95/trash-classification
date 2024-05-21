@@ -32,3 +32,6 @@ mkdir -p `./models/`
 ```bash
 python train_model.py
 ```
+
+## Pre-trained Models
+The pre-trained models are available to use on the [Huggingface repository](https://huggingface.co/diozhug/tensorflow-trash-classification).
