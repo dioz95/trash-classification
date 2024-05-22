@@ -25,13 +25,16 @@ def generate_data(images_dir):
     # Without data augmentation
     datagen = ImageDataGenerator(
         rescale=1./255, 
-        validation_split=0.2
+        validation_split=0.2,
+        width_shift_range=0.1, 
+        height_shift_range=0.1, 
+        horizontal_flip=True
     )
     
     
     train_generator = datagen.flow_from_directory(
         images_dir,
-        target_size=(28, 28),
+        target_size=(32, 32),
         batch_size=config.batch_size,
         class_mode='categorical',
         subset='training'
@@ -39,7 +42,7 @@ def generate_data(images_dir):
     
     validation_generator = datagen.flow_from_directory(
         images_dir,
-        target_size=(28, 28),
+        target_size=(32, 32),
         batch_size=config.batch_size,
         class_mode='categorical',
         subset='validation'
@@ -50,7 +53,7 @@ def generate_data(images_dir):
 def build_cnn(train_generator):
     n_class = len(train_generator.class_indices)
 
-    i = Input(shape=(28, 28, 3))
+    i = Input(shape=(32, 32, 3))
 
     # Convolutional Layers {Conv --> BatchNorm --> Conv --> BatchNorm --> MaxPooling (3x)}
     x = Conv2D(32, (3,3), padding='same', activation='relu')(i)
